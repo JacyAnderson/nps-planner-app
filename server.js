@@ -15,25 +15,27 @@ var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
+// recquire commandline
 var exec = require('child_process').exec;
-var cmd = 'curl -X GET \
-  https://developer.nps.gov/api/v0/parks?parkCode=romo\
-  -H "authorization: C7D61596-3FA5-47EA-906D-202B2B3ECA00" \
-  -H "cache-control: no-cache"';
-var authorization = "Authorization";
+
+// VARIABLES
+// =============================================================================
+
+// API Key located in .env
 var api_key = process.env.NPS_KEY;
+
+var version = "v0"
+
+var cmdCOParks = 'curl -X GET \
+  https://developer.nps.gov/api/' + version + '/parks?stateCode=CO\
+  -H "authorization: "' + api_key +'\
+  -H "cache-control: no-cache"';
+
 var url = 'https://developer.nps.gov/api/v0/parks';
 // var url = 'https://developer.nps.gov/api/v0/alerts?parkCode=yell,yose';
 
- 
-// var options = {
-//   url: url,
-//   headers: {
-//     'Authorization': api_key
-//   }
-// };
 
-// console.log(options);
+// MIDDLEWARE
 
 app.use(morgan('dev')); 
 app.use(cookieParser());
@@ -70,19 +72,17 @@ var port = process.env.PORT || 3000;
 
 var router = express.Router();
 
-
-
 // GET all National Parks
 app.get('/parks', function(req, res) {
 
 	console.log("Making get request at Index");
-    console.log("Your api_key is: " + api_key);	
     
-    exec(cmd, function(err, stdout, stderr) {
+    exec(cmdCOParks, function(err, stdout, stderr) {
       console.log(err);
       console.log(stdout);
+      var parsed = JSON.parse(stdout);
       console.log(stderr);
-      res.send(stdout);
+      res.send(parsed);
     });
 	// request(options, function(err, response, body) {
  //    console.log("In request");
