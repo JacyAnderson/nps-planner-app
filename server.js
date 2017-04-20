@@ -26,9 +26,9 @@ mongoose.connect('mongodb://localhost/local-authentication-with-passport');
 // API Key located in .env
 var api_key = process.env.NPS_KEY;
 
-var version = "v0"
+var version = "v0";
 
-var cmdCOParks = 'curl -X GET \
+var cmdParks = 'curl -X GET \
   https://developer.nps.gov/api/' + version + '/parks?stateCode=CO\
   -H "authorization: "' + api_key +'\
   -H "cache-control: no-cache"';
@@ -75,11 +75,10 @@ var port = process.env.PORT || 3000;
 var router = express.Router();
 
 // GET all National Parks
-app.get('/COparks', function(req, res) {
-
+app.get('/parks', function(req, res) {
 	console.log("Making get request at Index");
     
-    exec(cmdCOParks, function(err, stdout, stderr) {
+    exec(cmdParks, function(err, stdout, stderr) {
       console.log(err);
       console.log(stdout);
       var parsed = JSON.parse(stdout);
