@@ -15,6 +15,6 @@ var ParkSchema = new Schema ({
 	url : String
 });
 
-var Park =mongoose.model('Park', ParkSchema);
+var Park = mongoose.model('Park', ParkSchema);
 
 module.exports = Park;

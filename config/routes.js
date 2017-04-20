@@ -9,6 +9,9 @@ var staticsController = require('../controllers/statics');
 router.route('/')
   .get(staticsController.home);
 
+router.route('/parks')
+  .get(staticsController.parks);
+
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup)

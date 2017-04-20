@@ -1,2 +1,7 @@
 .navbar-brand {
   font-family: 'Rock Salt', cursive; }
+
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden; }
