@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 gulp.task('default', function() {
   console.log('GULP REPORTING FOR DUTY');
   gulp.watch('sass/**/*.scss',['styles']);
-  gulp.watch('src/**/*.js', ['scripts']);
+  // gulp.watch('src/**/*.js', ['scripts']);
 });
 
 gulp.task('styles', function() {

@@ -18,6 +18,8 @@ var session      = require('express-session');
 // recquire commandline
 var exec = require('child_process').exec;
 
+mongoose.connect('mongodb://localhost/local-authentication-with-passport');
+
 // VARIABLES
 // =============================================================================
 
@@ -73,7 +75,7 @@ var port = process.env.PORT || 3000;
 var router = express.Router();
 
 // GET all National Parks
-app.get('/parks', function(req, res) {
+app.get('/COparks', function(req, res) {
 
 	console.log("Making get request at Index");
     
