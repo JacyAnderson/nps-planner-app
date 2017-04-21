@@ -1,5 +1,4 @@
 // CLIENT-SIDE JS
-
 var usStates = [
     { name: 'Alabama', abbreviation: 'AL'},
     { name: 'Alaska', abbreviation: 'AK'},
@@ -71,6 +70,7 @@ $(document).ready(function() {
     // console.log($('.select-box option:selected').val());
     searchParks();
   	});
+  	getState();
 });
 
 // Get all parks from database, and using a loop, populate form with the fullName for each park
@@ -89,6 +89,14 @@ function searchParks() {
 			if ($('.select-box option:selected').val() === park.fullName) {
               console.log(park);
               console.log(park.states);
+              renderPark(park);
+
+
+              // $('main').append('<div class=".container-fluid ' + park.parkCode +'-row" row>');
+              // $('.' + park.parkCode + '-row').append('<div class="'+ park.parkCode+'-col col-md-6 col-lg-6"></div>');
+              // $('.' + park.parkCode + '-col').append('<h2>' + park.fullName + '</h2>');
+              // $('.' + park.parkCode + '-col').append('<p>' + park.description + '</p>');
+
               // $('main.container').attr('class', 'collapse');
 			}
 		});
@@ -96,19 +104,72 @@ function searchParks() {
 }
 
 
-
 // When .state-dropdown is selected, take .innerHtml and loop through var usStates to match usStates.name
 function getState() {
-	var state = 'CO';
-	$.get('/api/parks/' + state, function(parks) {
-      parks.forEach(function(park) {
-      	console.log(park);
-      })
-	})
+	$('.state-dropdown').on('click', function(){
+      console.log("Dropdown clicked!");
+	});
+
+
+
+
+	// if($('.state-menu option:selected')) {
+	// 	console.log("State selected!");
+	// };
+	// $.get('/api/parks/' + state, function(parks) {
+ //      parks.forEach(function(park) {
+ //      	console.log(park);
+ //      })
+	// })
+};
+
+
+
+function buildAlertsHtml(park, parkCode) {
+
 }
 
-function filterByState() {
- 
-}
+function renderPark(park) {
+  console.log('rendering park:', park);
 
-// When state is selected, filter .select-box by checking looping through parks to see if state.abbreviation is included in states value
+  var parkHtml =
+  "        <!-- one park -->" +
+  "        <div class='row park' data-park-id='" + park._id + "'>" +
+  "          <div class='col-md-12'>" +
+  "            <div class='panel panel-default'>" +
+  "              <div class='panel-body'>" +
+  "              <!-- begin park internal row -->" +
+  "                <div class='row'>" +
+  "                  <div class='col-md-8 col-xs-12'>" +
+  "                    <ul class='list-group'>" +
+  "                      <li class='list-group-item'>" +
+  "                        <h2 class='inline-header'>"+ park.fullName +"</h2>" +
+  "                        <h4 class='inline-header'>States: " + park.states + "</h4>" +
+  "                    </ul>" +
+  "                  </div>" +
+  "                  <div class='col-md-4 col-xs-12 thumbnail park-pic'>" +
+  "                     <img src='" + "http://placehold.it/500x500'" +  " alt='park image'>" +
+  "                  </div>" +
+  "                  <div class='col-md-8 col-xs-12'>" +
+  "                    <ul class='list-group'>" +
+  "                      <li class='list-group-item'>" +
+  "                        <h5 class='inline-header'>Description:</h5>" +
+  "                        <p>"+ park.description +"</p>" +
+  "                    </ul>" +
+  "                  </div>" +
+  "                </div>" +
+buildAlertsHtml(park, park.parkCode) +
+  "                <!-- end of park internal row -->" +
+
+  "              </div>" + // end of panel-body
+
+  "              <div class='panel-footer'>" +
+  "                <button class='btn btn-primary add-park'>Save to My Parks</button>" +
+  "              </div>" +
+
+  "            </div>" +
+  "          </div>" +
+  "          <!-- end one park -->";
+
+  $('#parks').prepend(parkHtml);
+ }

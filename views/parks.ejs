@@ -14,7 +14,7 @@
 <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle state-dropdown" type="button" data-toggle="dropdown">Filter by State
   <span class="caret"></span></button>
-  <ul class="dropdown-menu scrollable-menu" role="menu">
+  <ul class="dropdown-menu scrollable-menu state-menu" role="menu">
     <%var usStates = [
     { name: 'Alabama', abbreviation: 'AL'},
     { name: 'Alaska', abbreviation: 'AK'},
@@ -80,6 +80,13 @@
     <li><a href="#"><%= state.name %></a></li>
     <% }); %>
   </ul>             
+</div>
+<hr>
+
+<!-- Parks go here -->
+<div id="parks">
+    
+
 </div>
 <% include ./partials/footer.ejs %>
 
