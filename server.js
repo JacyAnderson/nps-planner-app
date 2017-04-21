@@ -95,6 +95,13 @@ app.get('/api/parks', function parkNames (req, res) {
   });
 });
 
+// Sort parks by state
+app.get('/api/parks/:state', function(req, res) {
+  console.log(req.params.state);
+  db.Park.find({ states: req.params.state}, function(err, parks) {
+    res.json(parks);
+  })
+})
 
 // START THE SERVER
 // ==============================================================================
