@@ -1,4 +1,6 @@
 var db = require('../models');
+var User = require('../models/user')
+
 
 // require commandline
 var exec = require('child_process').exec;
@@ -132,6 +134,16 @@ function getAlerts(req, res) {
       });
 }
 
+// add to my parks
+function addMyPark(req, res, next) {
+  var userId = req.user._id;
+  console.log(userId);
+  db.User.find({_id: req.user._id}, function(err, user) {
+    console.log(user[0].local.userParks);
+  });
+};
+
+
 module.exports = {
   getParkIndex: getParkIndex,
   getParks: getParks,
@@ -139,5 +151,6 @@ module.exports = {
   getByParkCode: getByParkCode,
   editByParkCode: editByParkCode,
   populateApi: populateApi,
-  getAlerts: getAlerts
+  getAlerts: getAlerts,
+  addMyPark: addMyPark
 }

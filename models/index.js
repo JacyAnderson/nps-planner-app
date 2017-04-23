@@ -4,4 +4,4 @@ var Park = require('./park');
 var User = require('./user');
 
 module.exports.Park = require("./park.js");
-module.exports.user = require("./user.js");
+module.exports.User = require("./user.js");

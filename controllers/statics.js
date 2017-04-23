@@ -10,7 +10,7 @@ function parks(req, res) {
 
 // Get /myParks
 function myParks(req, res) {
-	res.render('myParks');
+  res.render('myParks');
 }
 
 module.exports = {

@@ -34,7 +34,9 @@ router.route('/logout')
 router.route('/myParks')
   .get(authenticatedUser, staticsController.myParks)
 
+
 // Park routes
+
 // Get home page
 router.route('/')
 	.get(parkControllers.getParkIndex)
@@ -55,6 +57,9 @@ router.route('/parks/code/:parkCode')
 router.route('parks/code/:parkCode')
   .put(parkControllers.editByParkCode)
 
+// Add a favorite park to current user's databse
+router.route('/myParks/user')
+  .get(authenticatedUser, parkControllers.addMyPark)
 
 // API ROUTES
 
@@ -65,6 +70,7 @@ router.route('/api/parks')
 
 router.route('/alerts/:parkCode')
   .get(parkControllers.getAlerts)
+
 
 
 // function authenticated

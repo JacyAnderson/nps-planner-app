@@ -75,6 +75,8 @@ $(document).ready(function() {
   });
 //   	});
 //   	getState();
+  
+ 
 });
 
 // // Searches through parks array to match selected park
@@ -173,7 +175,8 @@ function renderPark(park) {
   "              </div>" + // end of panel-body
 
   "              <div class='panel-footer'>" +
-  "                <button class='btn btn-primary add-park'>Save to My Parks</button>" +
+  "                <button class='btn btn-primary add-park' data-parkcode='" + park.parkCode + "'>Save to My Parks</button>" +
+
   "              </div>" +
 
   "            </div>" +
@@ -204,9 +207,17 @@ function renderPark(park) {
 				$('.' + park.parkCode + '-alert').append('<h5>' + newAlert.title + '<h5>');
 				$('.' + park.parkCode + '-alert').append('<p>' + newAlert.description + '<p>');
 				// $('.alert-danger').append('hr');
+       
 			}
 		});    
 	}
 	buildAlertsHtml(park, park.parkCode);
+   $('.add-park').on('click', function(event) {
+    console.log('button clicked');
+    var newMyPark = $(this).data("parkcode");
+    console.log(newMyPark);
+    console.log(this);
+  });
 }
+
 
