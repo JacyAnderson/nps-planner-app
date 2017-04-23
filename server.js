@@ -109,17 +109,17 @@ app.get('/api/parks/:state', function(req, res) {
 
 // Takes in parkCode and returns alerts for park
 app.get('/alerts/:parkCode', function(req, res) {
+  console.log("about to make request");
   var cmdAlerts = 'curl -X GET \
   https://developer.nps.gov/api/' + version + '/alerts?parkCode='+ req.params.parkCode +'\
   -H "authorization: "' + api_key +'\
   -H "cache-control: no-cache"';
 
   exec(cmdAlerts, function(err, stdout, stderr) {
-      console.log(err);
+      console.log("The err received is: ", err);
       console.log(stdout);
-      var parsed = JSON.parse(stdout);
       console.log(stderr);
-      res.send(parsed);
+      res.send(stdout);
     });
 });
 

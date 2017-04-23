@@ -125,41 +125,50 @@ function getState() {
 
 
 
-function buildAlertsHtml(park, parkCode) {
 
-}
+
+// function renderAlerts(alerts) {
+	    	
+// }
+
 
 function renderPark(park) {
-  console.log('rendering park:', park);
+	console.log('rendering park:', park);
 
-  var parkHtml =
-  "        <!-- one park -->" +
-  "        <div class='row park' data-park-id='" + park._id + "'>" +
-  "          <div class='col-md-12'>" +
-  "            <div class='panel panel-default'>" +
-  "              <div class='panel-body'>" +
-  "              <!-- begin park internal row -->" +
-  "                <div class='row'>" +
-  "                  <div class='col-md-8 col-xs-12'>" +
-  "                    <ul class='list-group'>" +
-  "                      <li class='list-group-item'>" +
-  "                        <h2 class='inline-header'>"+ park.fullName +"</h2>" +
-  "                        <h4 class='inline-header'>States: " + park.states + "</h4>" +
-  "                    </ul>" +
-  "                  </div>" +
-  "                  <div class='col-md-4 col-xs-12 thumbnail park-pic'>" +
-  "                     <img src='" + "http://placehold.it/500x500'" +  " alt='park image'>" +
-  "                  </div>" +
-  "                  <div class='col-md-8 col-xs-12'>" +
-  "                    <ul class='list-group'>" +
-  "                      <li class='list-group-item'>" +
-  "                        <h5 class='inline-header'>Description:</h5>" +
-  "                        <p>"+ park.description +"</p>" +
-  "                    </ul>" +
-  "                  </div>" +
-  "                </div>" +
-buildAlertsHtml(park, park.parkCode) +
-  "                <!-- end of park internal row -->" +
+
+	var parkHtml =
+	"        <!-- one park -->" +
+	"        <div class='row park' data-park-id='" + park._id + "'>" +
+	"          <div class='col-md-12'>" +
+	"            <div class='panel panel-default'>" +
+	"              <div class='panel-body'>" +
+	"              <!-- begin park internal row -->" +
+	"                <div class='row'>" +
+	"                  <div class='col-md-8 col-xs-12'>" +
+	"                    <ul class='list-group'>" +
+	"                      <li class='list-group-item'>" +
+	"                        <h2 class='inline-header'>"+ park.fullName +"</h2>" +
+	"                        <h4 class='inline-header'>States: " + park.states + "</h4>" +
+	"                    </ul>" +
+	"                  </div>" +
+	"                  <div class='col-md-4 col-xs-12 thumbnail park-pic'>" +
+	"                     <img src='" + "http://placehold.it/500x500'" +  " alt='park image'>" +
+	"                  </div>" +
+	"                  <div class='col-md-8 col-xs-12'>" +
+	"                    <ul class='list-group'>" +
+	"                      <li class='list-group-item'>" +
+	"                        <h5 class='inline-header'>Description:</h5>" +
+	"                        <p>"+ park.description +"</p>" +
+	"                    </ul>" +
+	"                  </div>" +
+	"                </div>" +
+	"                <div class='" + park.parkCode+ "-alerts'>" +
+                     // alerts!
+                     // "       <div class='alert alert-danger'>" +
+                     // "         <strong>Alerts</strong>" +
+                     // "       </div>" +
+                     // "                </div>" +
+                     // "                <!-- end of park internal row -->" +
 
   "              </div>" + // end of panel-body
 
@@ -172,4 +181,31 @@ buildAlertsHtml(park, park.parkCode) +
   "          <!-- end one park -->";
 
   $('#parks').prepend(parkHtml);
- }
+  function buildAlertsHtml(park, parkCode) {
+		console.log(park.parkCode);
+		$.get('/alerts/' + park.parkCode) 
+		.done(function(data) {
+			var parsed = JSON.parse(data);
+
+      $('.' + park.parkCode + '-alerts').append("<div class='"+ park.parkCode +"-alert alert alert-danger'><strong>Alerts</strong></div>");
+			for(var i = 0; i < parsed.data.length; i++) {
+        
+        // Store alert as variable
+				let newAlert = {
+					category: parsed.data[i].category,
+					title: parsed.data[i].title,
+					description: parsed.data[i].description,
+					url: parsed.data[i].url
+				}
+				console.log(newAlert.title);
+
+        // Append alert to page
+				$('.' + park.parkCode + '-alert').append('<hr>');
+				$('.' + park.parkCode + '-alert').append('<h5>' + newAlert.title + '<h5>');
+				$('.' + park.parkCode + '-alert').append('<p>' + newAlert.description + '<p>');
+				// $('.alert-danger').append('hr');
+			}
+		});    
+	}
+	buildAlertsHtml(park, park.parkCode);
+}
