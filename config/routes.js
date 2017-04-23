@@ -13,6 +13,7 @@ function authenticatedUser(req, res, next) {
     res.redirect('/login');
 }
 
+//user routes
 router.route('/')
   .get(staticsController.home);
 
@@ -32,6 +33,39 @@ router.route('/logout')
 
 router.route('/myParks')
   .get(authenticatedUser, staticsController.myParks)
+
+// Park routes
+// Get home page
+router.route('/')
+	.get(parkControllers.getParkIndex)
+
+// Getting ALL parks
+router.route('/parks')
+  .get(parkControllers.getParks)
+
+// Get parks by state
+router.route('/parks/:state')
+  .get(parkControllers.getParksByState)
+
+// Get a single park
+router.route('/parks/code/:parkCode') 
+  .get(parkControllers.getByParkCode)
+
+// Edit a single parks directionsUrl
+router.route('parks/code/:parkCode')
+  .put(parkControllers.editByParkCode)
+
+
+// API ROUTES
+
+
+// Adds all parks to API
+router.route('/api/parks')
+  .get(parkControllers.populateApi)
+
+router.route('/alerts/:parkCode')
+  .get(parkControllers.getAlerts)
+
 
 // function authenticated
   

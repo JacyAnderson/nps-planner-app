@@ -64,25 +64,20 @@ var usStates = [
 
 $(document).ready(function() {
   console.log("Hello world!");
-  getParkNames();
+  $.get('/api/parks', function(parks) { 
+    parks.forEach(function(park){
+      $('.select-box').append("<option>" + park.fullName + "</option>");
+    });
+  });
+//   getParkNames();
   $('.select-box').change(function() {
-  	// var selected = $('.select-box option:selected').val();
-    // console.log($('.select-box option:selected').val());
     searchParks();
-  	});
-  	getState();
+  });
+//   	});
+//   	getState();
 });
 
-// Get all parks from database, and using a loop, populate form with the fullName for each park
-function getParkNames() {
-	$.get('/api/parks', function(parks) { 
-		parks.forEach(function(park){
-		  $('.select-box').append("<option>" + park.fullName + "</option>");
-		});
-	});
-};
-
-// Searches through parks array to match selected park
+// // Searches through parks array to match selected park
 function searchParks() {
 	$.get('/api/parks', function(parks) {
 		parks.forEach(function(park) {
@@ -90,46 +85,56 @@ function searchParks() {
               console.log(park);
               console.log(park.states);
               renderPark(park);
-
-
-              // $('main').append('<div class=".container-fluid ' + park.parkCode +'-row" row>');
-              // $('.' + park.parkCode + '-row').append('<div class="'+ park.parkCode+'-col col-md-6 col-lg-6"></div>');
-              // $('.' + park.parkCode + '-col').append('<h2>' + park.fullName + '</h2>');
-              // $('.' + park.parkCode + '-col').append('<p>' + park.description + '</p>');
-
-              // $('main.container').attr('class', 'collapse');
 			}
 		});
 	});
 }
 
 
-// When .state-dropdown is selected, take .innerHtml and loop through var usStates to match usStates.name
-function getState() {
-	$('.state-dropdown').on('click', function(){
-      console.log("Dropdown clicked!");
-	});
+function getAlerts() {
+  $.get('/alerts/:parkCode', function(req, res) {
+    console.log("about to make request");
+    var cmdAlerts = 'curl -X GET \
+    https://developer.nps.gov/api/' + version + '/alerts?parkCode='+ req.params.parkCode +'\
+    -H "authorization: "' + api_key +'\
+    -H "cache-control: no-cache"';
+
+    exec(cmdAlerts, function(err, stdout, stderr) {
+        console.log("The err received is: ", err);
+        console.log(stdout);
+        console.log(stderr);
+        res.send(stdout);
+      });
+  });
+}
+
+
+// // When .state-dropdown is selected, take .innerHtml and loop through var usStates to match usStates.name
+// function getState() {
+// 	$('.state-dropdown').on('click', function(){
+//       console.log("Dropdown clicked!");
+// 	});
 
 
 
 
-	// if($('.state-menu option:selected')) {
-	// 	console.log("State selected!");
-	// };
-	// $.get('/api/parks/' + state, function(parks) {
- //      parks.forEach(function(park) {
- //      	console.log(park);
- //      })
-	// })
-};
+// 	// if($('.state-menu option:selected')) {
+// 	// 	console.log("State selected!");
+// 	// };
+// 	// $.get('/api/parks/' + state, function(parks) {
+//  //      parks.forEach(function(park) {
+//  //      	console.log(park);
+//  //      })
+// 	// })
+// };
 
 
 
 
 
-// function renderAlerts(alerts) {
+// // function renderAlerts(alerts) {
 	    	
-// }
+// // }
 
 
 function renderPark(park) {
@@ -163,12 +168,7 @@ function renderPark(park) {
 	"                  </div>" +
 	"                </div>" +
 	"                <div class='" + park.parkCode+ "-alerts'>" +
-                     // alerts!
-                     // "       <div class='alert alert-danger'>" +
-                     // "         <strong>Alerts</strong>" +
-                     // "       </div>" +
-                     // "                </div>" +
-                     // "                <!-- end of park internal row -->" +
+               // ALERTS!
 
   "              </div>" + // end of panel-body
 
@@ -209,3 +209,4 @@ function renderPark(park) {
 	}
 	buildAlertsHtml(park, park.parkCode);
 }
+
