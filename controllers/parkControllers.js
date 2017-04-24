@@ -25,46 +25,36 @@ function getUser(req, res) {
     console.log(user);
     console.log(user[0].local.userParks);
     var userParks = user[0].local.userParks;
-    
-    
-
   });
 };  
 
 function updateUserPark(req, res, next) {
   console.log('in addMyParks function');
-  console.log('req is: ' + req)
+  console.log('req', req);
   var userId = req.user._id;
-  console.log(req.body._id);
   console.log('this users ID is: ' + userId);
-  db.User.find({_id: req.user._id}, function(err, user, park) {
-    console.log('finding userParks')
+  db.User.find({_id: req.user._id}, function(req, user, res, err) {
     // var userParks = user[0].local.userParks;
     console.log(user[0]);
-    console.log('the users parks should be empty: ' + user[0].local.userParks);
-    // user[0].local.userParks.push({park});
+    console.log(user[0].local.userParks); 
 
     
-
-    // user[0].local._id = park.id;
-    // user[0].local.userParks.location = req.body.location;
-    // user[0].local.userParks.website_url = req.body.website_url;
-    // user[0].local.userParks.hike_complete = req.body.hike_complete;
-    // user[0].local.userParks.save();
-    // res.json(user[0].local.userParks);
-
-    // console.log(user[0].local.userParks);
+    // if (err) {
+    //   res.send('could not find user because: ' + err);
+    // } else {
+    //   user[0].local.userParks.fullName = req.fullName; 
+    // }
+    // console.log(user[0].local.userParks.fullName);
+    // user[0].local.userParks.push({park});
   });
-  // User.save(function(err) {
-  //   if(!err) {
-  //     res.send(userParks);
-  //   } else {
-  //     res.send(err);
-  //   }
-  // });
 };
 
-
+function deleteUser(req, res) {
+  console.log(req.params._id);
+  db.User.findOneAndRemove({_id: req.params._id}, function(err, deletedUser) {
+    res.json(deletedUser);
+  });
+};
 
 // PARK Routes
 
@@ -91,7 +81,7 @@ function getParksByState (req, res) {
 
 //SHOW
 function getByParkCode (req, res) {
-  console.log(req.params);
+  console.log(req);
   console.log("Get one park by parkCode");
   db.Park.find({ parkCode: req.params.parkCode}, function(err, park) {
     console.log(park);
@@ -99,7 +89,27 @@ function getByParkCode (req, res) {
   });
 };
 
-//POST park to user MyParks page
+// PUT 
+function updateUserByParkCode(req, res) {
+  var parkToStore = req.body;
+   db.User.find({_id: req.user._id}, function(err, res) {
+    console.log(user[0].local.userParks);
+    var userParks = user[0].local.userParks;
+  });
+}
+
+//POST park to DB
+function parkCreate(req, res) {
+  console.log('params', req.body);
+   db.Park.create(req.body, function(err, park) {
+    if (err) { console.log('error', err); }
+    {
+    
+  }
+    res.json(park);
+  });
+};
+
 
 //PUT
 function editByParkCode (req, res) {
@@ -121,52 +131,6 @@ function editByParkCode (req, res) {
 
 //DELETE
 
-
-
-// app.get('/COparks', function(req, res) {
-
-// 	console.log("Making get request at Index");
-//     exec(cmdParks, function(err, stdout, stderr) {
-//       console.log(err);
-//       console.log(stdout);
-//       var parsed = JSON.parse(stdout);
-//       console.log(stderr);
-//       res.send(parsed);
-//     });
-// });
-
-// $.get('/api/parks', function parkNames (req, res) {
-//   db.Park.find({}, function(err, parks){
-//     res.json(parks);
-//   });
-// });
-
-// // Sort parks by state
-// $.get('/api/parks/:state', function(req, res) {
-//   console.log(req.params.state);
-//   db.Park.find({ states: req.params.state}, function(err, parks) {
-//     res.json(parks);
-//   });
-// });
-
-
-// // Takes in parkCode and returns alerts for park
-
-
-// app.get('/api/myparks', function myParks(req, res) {
-//   res.json('Current users parks')
-// })
-
-// // Posts park to db under users.userParks 
-// app.post('/api/myparks', function myParkCreate (req, res, next) {
-//   console.log(req.body);
-//   res.end();
-//   // db.findUser({email: req.user.}, function (err, user) {
-    
-//   //   if (err) return handleError(err);
-//   //   console.log(currentUser);
-//   // });
-// });
 
 // GET
 function populateApi(req, res) {
@@ -202,8 +166,11 @@ module.exports = {
   getParks: getParks,
   getParksByState: getParksByState,
   getByParkCode: getByParkCode,
+  updateUserByParkCode: updateUserByParkCode,
+  parkCreate: parkCreate,
   editByParkCode: editByParkCode,
   populateApi: populateApi,
   getAlerts: getAlerts,
-  updateUserPark: updateUserPark
+  updateUserPark: updateUserPark,
+  deleteUser: deleteUser
 }

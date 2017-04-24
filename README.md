@@ -2,6 +2,8 @@
 
 ## [Trello Link](https://trello.com/b/u0GiRqeJ/nps-trip-planner-project-2)
 
+## [Link to Wirefram](https://trello.com/b/u0GiRqeJ/nps-trip-planner-project-2)
+
 
 ## APIs Used:
 ### National Parks Service API
@@ -35,7 +37,6 @@
  ## Planned Features
  ####
   - National Park lookup by state (starting with CO) to provide current information direct from the NPS, including current alerts, directions, and MAYBE a map. 
-  - Allow users to check for how busy the parks usually are at different days and times (via Google map implementation, and likely based off of how busy visitors centers are)
   - User sign up and sign in to store potential trip ideas for future reference. 
 
 
@@ -48,7 +49,23 @@
     - Sort National Parks by state
     - Select a Park
     - See selected park's important information, including current alerts, closers, etc
-    - Save park to users "Adventures"
+    - Save park to "My Parks""
+
+
+
+
+# As of 4/24: 
+### Things not finished:
+#### - Unable to save parks to "my parks"
+- unable to delete a park from "my parks"
+- sorting by state
+- basically anything that I wanted to do
+- styling
+- can't sort through heroku log errors
+- mobile toggle not connected
+
+## Things that are not going great
+#### Other than pretty much everything, the biggest take away here is to solidify more solid RESTFUL routes - the fact that as of right now I don't have even 4 RESTFUl routes is pretty sad. I spent all of today (4/23) trying to rearrange my app at the suggestion of other devs, and ended up just being confused and frustrated due my lack of understandings of the concepts. I'm just finally starting to understand why we need so many files (Until today I had basically everything in my server.js file).
 
 
 

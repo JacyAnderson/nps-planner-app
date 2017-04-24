@@ -55,21 +55,30 @@ router.route('/api/parks')
   // SHOW a single park
 router.route('/api/parks/:parkCode') 
   .get(parkControllers.getByParkCode)
+  .put(parkControllers.updateUserByParkCode)
 
-  // Edit a single parks directionsUrl
+  // PUT Edit a single parks directionsUrl
 router.route('/api/parks/:parkCode')
   .put(parkControllers.editByParkCode)
 
+// router.route('/api/parks/:park')
+//   .post(parkControllers.parkCreate)
 
   // User API routes
 
+// Get all users
 router.route('/api/user')
   .get(parkControllers.getAllUsers)
 
+// Get ONE user and update one user's parks (not functional)
 router.route('/api/user/:id')
   .get(parkControllers.getUser)
   .put(authenticatedUser, parkControllers.updateUserPark)
 
+
+// Delete a user
+router.route('api/user/:id')
+  .delete(parkControllers.deleteUser)
 
 
 

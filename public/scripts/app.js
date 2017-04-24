@@ -228,22 +228,18 @@ function renderPark(park) {
       console.log('the park you are sending as data is: ' + parkToSend);
       // console.log('about to run PUT route');
     // $.put('api/parks/dev', )
+    var parkCodeToSend = park.parkCode;
       $.ajax({
-        url: 'api/user/58fcfd2ad1f6010b01f38077',
+        url: '/api/parks/' + parkCodeToSend,
         type: 'PUT',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: "success!",
-        data: parkToSend
+        data: parkToSend,
+        success: [ function(data) {
+          console.log('success');
+        }]
       });
     });
-
-
-
-   
-    // $.get('api/user/:id', function(req, res) {
-        
-    // });
   });
 }
 
