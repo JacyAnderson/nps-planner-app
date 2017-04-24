@@ -2,7 +2,7 @@
 
 ## [Trello Link](https://trello.com/b/u0GiRqeJ/nps-trip-planner-project-2)
 
-## [Link to Wirefram](https://trello.com/b/u0GiRqeJ/nps-trip-planner-project-2)
+## [Link to Wireframe](http://imgur.com/6BXbvtv)
 
 
 ## APIs Used:
