@@ -49,7 +49,9 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(session({ secret: 'WDI-GENERAL-ASSEMBLY-EXPRESS' })); 
+app.use(session({secret: '<mysecret>', 
+                 saveUninitialized: true,
+                 resave: true})); 
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
