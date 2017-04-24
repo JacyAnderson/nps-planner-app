@@ -1,5 +1,8 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/natParks");
+mongoose.connect(process.env.MONGODB_URI ||
+					process.env.MONGOLAB_URI ||
+					process.env.MONGOHQ_URL ||
+					"mongodb://localhost/natParks");
 var Park = require('./park');
 var User = require('./user');
 
