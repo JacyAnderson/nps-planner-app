@@ -49,7 +49,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(session({secret: '<mysecret>', 
+app.use(session({secret: cookie_secret, 
                  saveUninitialized: true,
                  resave: true})); 
 app.use(passport.initialize());
