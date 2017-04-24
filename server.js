@@ -54,7 +54,7 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
 
-require('./config/passport')(passport);
+require('./config/passport')(passport);	
 
 app.use(function(req, res, next) {
   res.locals.currentUser=req.user;
