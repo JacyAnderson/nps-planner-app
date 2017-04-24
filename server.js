@@ -78,5 +78,5 @@ var port = process.env.PORT || 3000;
 
 // START THE SERVER
 // ==============================================================================
-app.listen(port);
+app.listen(process.env.PORT || 3000);
 console.log('listening on port ' + port);
