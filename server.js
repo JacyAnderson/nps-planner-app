@@ -19,7 +19,7 @@ var session      = require('express-session');
 var exec = require('child_process').exec;
 var db = require('./models');
 
-mongoose.createConnection('mongodb://localhost/natParks');
+// mongoose.createConnection('mongodb://localhost/natParks');
 
 // VARIABLES
 // =============================================================================
