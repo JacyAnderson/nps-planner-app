@@ -171,14 +171,10 @@ function renderPark(park) {
 	"                </div>" +
 	"                <div class='" + park.parkCode+ "-alerts'>" +
                // ALERTS!
-
-  "              </div>" + // end of panel-body
-
+  "                </div>" + // end of panel-body
   "              <div class='panel-footer'>" +
   "                <button class='btn btn-primary add-park' data-parkcode='" + park.parkCode + "'>Save to My Parks</button>" +
-
   "              </div>" +
-
   "            </div>" +
   "          </div>" +
   "          <!-- end one park -->";

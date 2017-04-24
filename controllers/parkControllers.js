@@ -17,6 +17,7 @@ function getAllUsers(req, res) {
   });
 };  
 
+// GET a single user
 function getUser(req, res) {
   console.log('accessing user db');
   db.User.find({_id: req.params.id}, function(err, res) {
@@ -28,6 +29,7 @@ function getUser(req, res) {
   });
 };  
 
+// Update UserPark
 function updateUserPark(req, res, next) {
   console.log('in addMyParks function');
   console.log('req', req);
@@ -49,6 +51,7 @@ function updateUserPark(req, res, next) {
   });
 };
 
+// Delete user (not functional)
 function deleteUser(req, res) {
   console.log(req.params._id);
   db.User.findOneAndRemove({_id: req.params._id}, function(err, deletedUser) {
@@ -154,10 +157,6 @@ function getAlerts(req, res) {
         res.send(stdout);
       });
 }
-
-// add to my parks
-
-
 
 module.exports = {
   getAllUsers: getAllUsers,
