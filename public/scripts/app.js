@@ -150,8 +150,8 @@ function renderPark(park) {
 	"            <div class='panel panel-default'>" +
 	"              <div class='panel-body'>" +
 	"              <!-- begin park internal row -->" +
-	"                <div class='row'>" +
-	"                  <div class='col-md-8 col-xs-12'>" +
+	"                <div class='row' id='main'>" +
+	"                  <div class='col-md-12 col-xs-12'>" +
 	"                    <ul class='list-group'>" +
 	"                      <li class='list-group-item'>" +
 	"                        <h2 class='inline-header'>"+ park.fullName +"</h2>" +
@@ -168,7 +168,7 @@ function renderPark(park) {
 	"                        <p>"+ park.description +"</p>" +
 	"                    </ul>" +
 	"                  </div>" +
-	"                </div>" +
+	"                </div>" + // <!---- end div main ---->
 	"                <div class='" + park.parkCode+ "-alerts'>" +
                // ALERTS!
   "                </div>" + // end of panel-body
