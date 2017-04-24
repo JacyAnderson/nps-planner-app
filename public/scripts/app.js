@@ -212,11 +212,38 @@ function renderPark(park) {
 		});    
 	}
 	buildAlertsHtml(park, park.parkCode);
+
+// on button click, get park data and then make a request to find current user by id, their saved parks, and update the array
+
+
+  // event listener to add selected park to My Parks
    $('.add-park').on('click', function(event) {
     console.log('button clicked');
-    var newMyPark = $(this).data("parkcode");
-    console.log(newMyPark);
+    var getMyPark = $(this).data("parkcode");
+    console.log(getMyPark);
     console.log(this);
+    $.get('api/parks/'+ getMyPark, function(park) {
+      console.log(park);
+      var parkToSend = JSON.stringify(park);
+      console.log('the park you are sending as data is: ' + parkToSend);
+      // console.log('about to run PUT route');
+    // $.put('api/parks/dev', )
+      $.ajax({
+        url: 'api/user/58fcfd2ad1f6010b01f38077',
+        type: 'PUT',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: "success!",
+        data: parkToSend
+      });
+    });
+
+
+
+   
+    // $.get('api/user/:id', function(req, res) {
+        
+    // });
   });
 }
 

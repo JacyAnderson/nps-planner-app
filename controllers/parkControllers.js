@@ -8,8 +8,65 @@ var exec = require('child_process').exec;
 var api_key = process.env.NPS_KEY;
 var version = "v0";
 
+// USER ROUTES
+
+function getAllUsers(req, res) {
+  console.log('getting all users');
+  db.User.find({}, function(err, users) {
+    res.json(users);
+  });
+};  
+
+function getUser(req, res) {
+  console.log('accessing user db');
+  db.User.find({_id: req.params.id}, function(err, res) {
+    console.log("finding user");
+    var user = res;
+    console.log(user);
+    console.log(user[0].local.userParks);
+    var userParks = user[0].local.userParks;
+    
+    
+
+  });
+};  
+
+function updateUserPark(req, res, next) {
+  console.log('in addMyParks function');
+  console.log('req is: ' + req)
+  var userId = req.user._id;
+  console.log(req.body._id);
+  console.log('this users ID is: ' + userId);
+  db.User.find({_id: req.user._id}, function(err, user, park) {
+    console.log('finding userParks')
+    // var userParks = user[0].local.userParks;
+    console.log(user[0]);
+    console.log('the users parks should be empty: ' + user[0].local.userParks);
+    // user[0].local.userParks.push({park});
+
+    
+
+    // user[0].local._id = park.id;
+    // user[0].local.userParks.location = req.body.location;
+    // user[0].local.userParks.website_url = req.body.website_url;
+    // user[0].local.userParks.hike_complete = req.body.hike_complete;
+    // user[0].local.userParks.save();
+    // res.json(user[0].local.userParks);
+
+    // console.log(user[0].local.userParks);
+  });
+  // User.save(function(err) {
+  //   if(!err) {
+  //     res.send(userParks);
+  //   } else {
+  //     res.send(err);
+  //   }
+  // });
+};
 
 
+
+// PARK Routes
 
 // GET homepage
 function getParkIndex(req, res) {
@@ -135,16 +192,12 @@ function getAlerts(req, res) {
 }
 
 // add to my parks
-function addMyPark(req, res, next) {
-  var userId = req.user._id;
-  console.log(userId);
-  db.User.find({_id: req.user._id}, function(err, user) {
-    console.log(user[0].local.userParks);
-  });
-};
+
 
 
 module.exports = {
+  getAllUsers: getAllUsers,
+  getUser: getUser,
   getParkIndex: getParkIndex,
   getParks: getParks,
   getParksByState: getParksByState,
@@ -152,5 +205,5 @@ module.exports = {
   editByParkCode: editByParkCode,
   populateApi: populateApi,
   getAlerts: getAlerts,
-  addMyPark: addMyPark
+  updateUserPark: updateUserPark
 }

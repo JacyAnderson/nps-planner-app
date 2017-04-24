@@ -35,44 +35,48 @@ router.route('/myParks')
   .get(authenticatedUser, staticsController.myParks)
 
 
-// Park routes
 
-// Get home page
+
+
+// Park API ROUTES
+
+// GET home page
 router.route('/')
 	.get(parkControllers.getParkIndex)
 
-// Getting ALL parks
-router.route('/parks')
-  .get(parkControllers.getParks)
-
-// Get parks by state
-router.route('/parks/:state')
+// GET parks by state
+router.route('/api/parks/state/:state')
   .get(parkControllers.getParksByState)
 
-// Get a single park
-router.route('/parks/code/:parkCode') 
-  .get(parkControllers.getByParkCode)
-
-// Edit a single parks directionsUrl
-router.route('parks/code/:parkCode')
-  .put(parkControllers.editByParkCode)
-
-// Add a favorite park to current user's databse
-router.route('/myParks/user')
-  .get(authenticatedUser, parkControllers.addMyPark)
-
-// API ROUTES
-
-
-// Adds all parks to API
+// GET all parks
 router.route('/api/parks')
   .get(parkControllers.populateApi)
 
+  // SHOW a single park
+router.route('/api/parks/:parkCode') 
+  .get(parkControllers.getByParkCode)
+
+  // Edit a single parks directionsUrl
+router.route('/api/parks/:parkCode')
+  .put(parkControllers.editByParkCode)
+
+
+  // User API routes
+
+router.route('/api/user')
+  .get(parkControllers.getAllUsers)
+
+router.route('/api/user/:id')
+  .get(parkControllers.getUser)
+  .put(authenticatedUser, parkControllers.updateUserPark)
+
+
+
+
+// ALERTS routes (external)
+
+
 router.route('/alerts/:parkCode')
   .get(parkControllers.getAlerts)
-
-
-
-// function authenticated
   
 module.exports = router;
