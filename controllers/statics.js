@@ -1,3 +1,5 @@
+// STATICS CONTROLLER
+
 // GET /
 function home(req, res) {  
   res.render('index');
@@ -13,6 +15,7 @@ function myParks(req, res) {
   res.render('myParks');
 }
 
+// Modules to export for use elsewhere
 module.exports = {
   home: home,
   parks: parks,

@@ -43,6 +43,7 @@ function getLogout(request, response) {
 function secret(request, response) {
 }
 
+// Modules to export for use elsewhere
 module.exports = {
 	getLogin: getLogin,
 	postLogin: postLogin,

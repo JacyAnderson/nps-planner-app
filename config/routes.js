@@ -1,11 +1,18 @@
+// ROUTES.JS PAGE
+
+// REQUIRE ALL THE THINGS
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var passport = require('passport');
+
+// REQUIRE CONTROLLERS
 var usersController = require('../controllers/users');
 var parkControllers = require('../controllers/parkControllers');
 var staticsController = require('../controllers/statics');
 
+
+// AUTHETICATES USER
 function authenticatedUser(req, res, next) {
 //if user is authenticated, we continue
     if (req.isAuthenticated()) return next();
@@ -13,7 +20,8 @@ function authenticatedUser(req, res, next) {
     res.redirect('/login');
 }
 
-//user routes
+// USER ROUTES
+// ======================================================================
 router.route('/')
   .get(staticsController.home);
 
@@ -38,8 +46,8 @@ router.route('/myParks')
 
 
 
-// Park API ROUTES
-
+// PARK API ROUTES
+// ======================================================================
 // GET home page
 router.route('/')
 	.get(parkControllers.getParkIndex)
@@ -52,19 +60,17 @@ router.route('/api/parks/state/:state')
 router.route('/api/parks')
   .get(parkControllers.populateApi)
 
-  // SHOW a single park
+// SHOW a single park
 router.route('/api/parks/:parkCode') 
   .get(parkControllers.getByParkCode)
   .put(parkControllers.updateUserByParkCode)
 
-  // PUT Edit a single parks directionsUrl
+// PUT Edit a single parks directionsUrl
 router.route('/api/parks/:parkCode')
   .put(parkControllers.editByParkCode)
 
-// router.route('/api/parks/:park')
-//   .post(parkControllers.parkCreate)
-
-  // User API routes
+// USER API ROUTES
+// ======================================================================
 
 // Get all users
 router.route('/api/user')
@@ -82,10 +88,10 @@ router.route('api/user/:id')
 
 
 
-// ALERTS routes (external)
-
-
+// ALERTS ROUTES
+// ======================================================================
 router.route('/alerts/:parkCode')
   .get(parkControllers.getAlerts)
-  
+
+// Modules to export
 module.exports = router;

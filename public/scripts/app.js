@@ -1,67 +1,68 @@
 // CLIENT-SIDE JS
+
+// States to populate state dropdown with
 var usStates = [
-    { name: 'Alabama', abbreviation: 'AL'},
-    { name: 'Alaska', abbreviation: 'AK'},
-    { name: 'American Samoa', abbreviation: 'AS'},
-    { name: 'Arizona', abbreviation: 'AZ'},
-    { name: 'Arkansas', abbreviation: 'AR'},
-    { name: 'California', abbreviation: 'CA'},
-    { name: 'Colorado', abbreviation: 'CO'},
-    { name: 'Connecticut', abbreviation: 'CT'},
-    { name: 'Delaware', abbreviation: 'DE'},
-    { name: 'District of Colombia', abbreviation: 'DC'},
-    { name: 'Florida', abbreviation: 'FL'},
-    { name: 'Georgia', abbreviation: 'GA'},
-    { name: 'Guam', abbreviation: 'GU'},
-    { name: 'Hawaii', abbreviation: 'HI'},
-    { name: 'Idaho', abbreviation: 'ID'},
-    { name: 'Illinois', abbreviation: 'IL'},
-    { name: 'Indiana', abbreviation: 'IN'},
-    { name: 'Iowa', abbreviation: 'IA'},
-    { name: 'Kansas', abbreviation: 'KS'},
-    { name: 'Kentucky', abbreviation: 'KY'},
-    { name: 'Louisiana', abbreviation: 'LA'},
-    { name: 'Maine', abbreviation: 'ME'},
-    { name: 'Marshall Islands', abbreviation: 'MH'},
-    { name: 'Maryland', abbreviation: 'MD'},
-    { name: 'Massachusetts', abbreviation: 'MA'},
-    { name: 'Michigan', abbreviation: 'MI'},
-    { name: 'Minnesota', abbreviation: 'MN'},
-    { name: 'Mississippi', abbreviation: 'MS'},
-    { name: 'Missouri', abbreviation: 'MO'},
-    { name: 'Montana', abbreviation: 'MT'},
-    { name: 'Nebraska', abbreviation: 'NE'},
-    { name: 'Nevada', abbreviation: 'NV'},
-    { name: 'New Hampshire', abbreviation: 'NH'},
-    { name: 'New Jersey', abbreviation: 'NJ'},
-    { name: 'New Mexico', abbreviation: 'NM'},
-    { name: 'New York', abbreviation: 'NY'},
-    { name: 'North Carolina', abbreviation: 'NC'},
-    { name: 'North Dakota', abbreviation: 'ND'},
-    { name: 'Northern Mariana Islands', abbreviation: 'MP'},
-    { name: 'Ohio', abbreviation: 'OH'},
-    { name: 'Oklahoma', abbreviation: 'OK'},
-    { name: 'Oregon', abbreviation: 'OR'},
-    { name: 'Palau', abbreviation: 'PW'},
-    { name: 'Pennsylvania', abbreviation: 'PA'},
-    { name: 'Puerto Rico', abbreviation: 'PR'},
-    { name: 'Rhode Island', abbreviation: 'RI'},
-    { name: 'South Carolina', abbreviation: 'SC'},
-    { name: 'South Dakota', abbreviation: 'SD'},
-    { name: 'Tennessee', abbreviation: 'TN'},
-    { name: 'Texas', abbreviation: 'TX'},
-    { name: 'Utah', abbreviation: 'UT'},
-    { name: 'Vermont', abbreviation: 'VT'},
-    { name: 'Virgin Islands', abbreviation: 'VI'},
-    { name: 'Virginia', abbreviation: 'VA'},
-    { name: 'Washington', abbreviation: 'WA'},
-    { name: 'West Virginia', abbreviation: 'WV'},
-    { name: 'Wisconsin', abbreviation: 'WI'},
-    { name: 'Wyoming', abbreviation: 'WY' }
+{ name: 'Alabama', abbreviation: 'AL'},
+{ name: 'Alaska', abbreviation: 'AK'},
+{ name: 'American Samoa', abbreviation: 'AS'},
+{ name: 'Arizona', abbreviation: 'AZ'},
+{ name: 'Arkansas', abbreviation: 'AR'},
+{ name: 'California', abbreviation: 'CA'},
+{ name: 'Colorado', abbreviation: 'CO'},
+{ name: 'Connecticut', abbreviation: 'CT'},
+{ name: 'Delaware', abbreviation: 'DE'},
+{ name: 'District of Colombia', abbreviation: 'DC'},
+{ name: 'Florida', abbreviation: 'FL'},
+{ name: 'Georgia', abbreviation: 'GA'},
+{ name: 'Guam', abbreviation: 'GU'},
+{ name: 'Hawaii', abbreviation: 'HI'},
+{ name: 'Idaho', abbreviation: 'ID'},
+{ name: 'Illinois', abbreviation: 'IL'},
+{ name: 'Indiana', abbreviation: 'IN'},
+{ name: 'Iowa', abbreviation: 'IA'},
+{ name: 'Kansas', abbreviation: 'KS'},
+{ name: 'Kentucky', abbreviation: 'KY'},
+{ name: 'Louisiana', abbreviation: 'LA'},
+{ name: 'Maine', abbreviation: 'ME'},
+{ name: 'Marshall Islands', abbreviation: 'MH'},
+{ name: 'Maryland', abbreviation: 'MD'},
+{ name: 'Massachusetts', abbreviation: 'MA'},
+{ name: 'Michigan', abbreviation: 'MI'},
+{ name: 'Minnesota', abbreviation: 'MN'},
+{ name: 'Mississippi', abbreviation: 'MS'},
+{ name: 'Missouri', abbreviation: 'MO'},
+{ name: 'Montana', abbreviation: 'MT'},
+{ name: 'Nebraska', abbreviation: 'NE'},
+{ name: 'Nevada', abbreviation: 'NV'},
+{ name: 'New Hampshire', abbreviation: 'NH'},
+{ name: 'New Jersey', abbreviation: 'NJ'},
+{ name: 'New Mexico', abbreviation: 'NM'},
+{ name: 'New York', abbreviation: 'NY'},
+{ name: 'North Carolina', abbreviation: 'NC'},
+{ name: 'North Dakota', abbreviation: 'ND'},
+{ name: 'Northern Mariana Islands', abbreviation: 'MP'},
+{ name: 'Ohio', abbreviation: 'OH'},
+{ name: 'Oklahoma', abbreviation: 'OK'},
+{ name: 'Oregon', abbreviation: 'OR'},
+{ name: 'Palau', abbreviation: 'PW'},
+{ name: 'Pennsylvania', abbreviation: 'PA'},
+{ name: 'Puerto Rico', abbreviation: 'PR'},
+{ name: 'Rhode Island', abbreviation: 'RI'},
+{ name: 'South Carolina', abbreviation: 'SC'},
+{ name: 'South Dakota', abbreviation: 'SD'},
+{ name: 'Tennessee', abbreviation: 'TN'},
+{ name: 'Texas', abbreviation: 'TX'},
+{ name: 'Utah', abbreviation: 'UT'},
+{ name: 'Vermont', abbreviation: 'VT'},
+{ name: 'Virgin Islands', abbreviation: 'VI'},
+{ name: 'Virginia', abbreviation: 'VA'},
+{ name: 'Washington', abbreviation: 'WA'},
+{ name: 'West Virginia', abbreviation: 'WV'},
+{ name: 'Wisconsin', abbreviation: 'WI'},
+{ name: 'Wyoming', abbreviation: 'WY' }
 ];
 
-
-
+// When document is loaded, run functions
 $(document).ready(function() {
   console.log("Hello world!");
   $.get('/api/parks', function(parks) { 
@@ -69,14 +70,9 @@ $(document).ready(function() {
       $('.select-box').append("<option>" + park.fullName + "</option>");
     });
   });
-//   getParkNames();
   $('.select-box').change(function() {
     searchParks();
   });
-//   	});
-//   	getState();
-  
- 
 });
 
 // // Searches through parks array to match selected park
@@ -84,15 +80,15 @@ function searchParks() {
 	$.get('/api/parks', function(parks) {
 		parks.forEach(function(park) {
 			if ($('.select-box option:selected').val() === park.fullName) {
-              console.log(park);
-              console.log(park.states);
-              renderPark(park);
-			}
-		});
+        console.log(park);
+        console.log(park.states);
+        renderPark(park);
+      }
+    });
 	});
 }
 
-
+// Get alerts from external api using command line
 function getAlerts() {
   $.get('/alerts/:parkCode', function(req, res) {
     console.log("about to make request");
@@ -102,141 +98,113 @@ function getAlerts() {
     -H "cache-control: no-cache"';
 
     exec(cmdAlerts, function(err, stdout, stderr) {
-        console.log("The err received is: ", err);
-        console.log(stdout);
-        console.log(stderr);
-        res.send(stdout);
-      });
+      console.log("The err received is: ", err);
+      console.log(stdout);
+      console.log(stderr);
+      res.send(stdout);
+    });
   });
 }
 
-
-// // When .state-dropdown is selected, take .innerHtml and loop through var usStates to match usStates.name
-// function getState() {
-// 	$('.state-dropdown').on('click', function(){
-//       console.log("Dropdown clicked!");
-// 	});
-
-
-
-
-// 	// if($('.state-menu option:selected')) {
-// 	// 	console.log("State selected!");
-// 	// };
-// 	// $.get('/api/parks/' + state, function(parks) {
-//  //      parks.forEach(function(park) {
-//  //      	console.log(park);
-//  //      })
-// 	// })
-// };
-
-
-
-
-
-// // function renderAlerts(alerts) {
-	    	
-// // }
-
-
+// Renders park to the page when scroll menu is clicked, and gets current Alerts from NPS API
 function renderPark(park) {
 	console.log('rendering park:', park);
 
+//HTML to add to page on click
+var parkHtml =
+"        <!-- one park -->" +
+"        <div class='row park' data-park-id='" + park._id + "'>" +
+"          <div class='col-md-12'>" +
+"            <div class='panel panel-default'>" +
+"              <div class='panel-body'>" +
+"              <!-- begin park internal row -->" +
+"                <div class='row' id='main'>" +
+"                  <div class='col-md-12 col-xs-12'>" +
+"                    <ul class='list-group'>" +
+"                      <li class='list-group-item'>" +
+"                        <h2 class='inline-header'>"+ park.fullName +"</h2>" +
+"                        <h4 class='inline-header'>States: " + park.states + "</h4>" +
+"                    </ul>" +
+"                  </div>" +
+"                  <div class='col-md-4 col-xs-12 thumbnail park-pic'>" +
+"                     <img src='" + "http://placehold.it/500x500'" +  " alt='park image'>" +
+"                  </div>" +
+"                  <div class='col-md-8 col-xs-12'>" +
+"                    <ul class='list-group'>" +
+"                      <li class='list-group-item'>" +
+"                        <h5 class='inline-header'>Description:</h5>" +
+"                        <p>"+ park.description +"</p>" +
+"                    </ul>" +
+"                  </div>" +
+"                 </div>" + // <!---- end div main ---->
+"                 <div class='" + park.parkCode+ "-alerts'>" +
+               // ALERTS GO HERE!
+"                 </div>" + // end of panel-body
+"               <div class='panel-footer'>" +
+"                 <button class='btn btn-primary add-park' data-parkcode='" + park.parkCode + "'>Save to My Parks</button>" +
+"               </div>" +
+"             </div>" +
+"           </div>" +
+"           <!-- end one park -->";
 
-	var parkHtml =
-	"        <!-- one park -->" +
-	"        <div class='row park' data-park-id='" + park._id + "'>" +
-	"          <div class='col-md-12'>" +
-	"            <div class='panel panel-default'>" +
-	"              <div class='panel-body'>" +
-	"              <!-- begin park internal row -->" +
-	"                <div class='row' id='main'>" +
-	"                  <div class='col-md-12 col-xs-12'>" +
-	"                    <ul class='list-group'>" +
-	"                      <li class='list-group-item'>" +
-	"                        <h2 class='inline-header'>"+ park.fullName +"</h2>" +
-	"                        <h4 class='inline-header'>States: " + park.states + "</h4>" +
-	"                    </ul>" +
-	"                  </div>" +
-	"                  <div class='col-md-4 col-xs-12 thumbnail park-pic'>" +
-	"                     <img src='" + "http://placehold.it/500x500'" +  " alt='park image'>" +
-	"                  </div>" +
-	"                  <div class='col-md-8 col-xs-12'>" +
-	"                    <ul class='list-group'>" +
-	"                      <li class='list-group-item'>" +
-	"                        <h5 class='inline-header'>Description:</h5>" +
-	"                        <p>"+ park.description +"</p>" +
-	"                    </ul>" +
-	"                  </div>" +
-	"                </div>" + // <!---- end div main ---->
-	"                <div class='" + park.parkCode+ "-alerts'>" +
-               // ALERTS!
-  "                </div>" + // end of panel-body
-  "              <div class='panel-footer'>" +
-  "                <button class='btn btn-primary add-park' data-parkcode='" + park.parkCode + "'>Save to My Parks</button>" +
-  "              </div>" +
-  "            </div>" +
-  "          </div>" +
-  "          <!-- end one park -->";
 
+  // Prepends parks to #parks
   $('#parks').prepend(parkHtml);
   function buildAlertsHtml(park, parkCode) {
-		console.log(park.parkCode);
-		$.get('/alerts/' + park.parkCode) 
-		.done(function(data) {
-			var parsed = JSON.parse(data);
+    console.log(park.parkCode);
+    $.get('/alerts/' + park.parkCode) 
+    .done(function(data) {
+     var parsed = JSON.parse(data);
 
-      $('.' + park.parkCode + '-alerts').append("<div class='"+ park.parkCode +"-alert alert alert-danger'><strong>Alerts</strong></div>");
-			for(var i = 0; i < parsed.data.length; i++) {
-        
+     // for alerts length, create new alerts and append to page
+     $('.' + park.parkCode + '-alerts').append("<div class='"+ park.parkCode +"-alert alert alert-danger'><strong>Alerts</strong></div>");
+     for(var i = 0; i < parsed.data.length; i++) {
+
         // Store alert as variable
-				let newAlert = {
-					category: parsed.data[i].category,
-					title: parsed.data[i].title,
-					description: parsed.data[i].description,
-					url: parsed.data[i].url
-				}
-				console.log(newAlert.title);
+        let newAlert = {
+         category: parsed.data[i].category,
+         title: parsed.data[i].title,
+         description: parsed.data[i].description,
+         url: parsed.data[i].url
+       }
 
         // Append alert to page
-				$('.' + park.parkCode + '-alert').append('<hr>');
-				$('.' + park.parkCode + '-alert').append('<h5>' + newAlert.title + '<h5>');
-				$('.' + park.parkCode + '-alert').append('<p>' + newAlert.description + '<p>');
+        $('.' + park.parkCode + '-alert').append('<hr>');
+        $('.' + park.parkCode + '-alert').append('<h5>' + newAlert.title + '<h5>');
+        $('.' + park.parkCode + '-alert').append('<p>' + newAlert.description + '<p>');
 				// $('.alert-danger').append('hr');
-       
+
 			}
 		});    
-	}
-	buildAlertsHtml(park, park.parkCode);
+  }
+  buildAlertsHtml(park, park.parkCode);
 
 // on button click, get park data and then make a request to find current user by id, their saved parks, and update the array
-
-
-  // event listener to add selected park to My Parks
-   $('.add-park').on('click', function(event) {
-    console.log('button clicked');
-    var getMyPark = $(this).data("parkcode");
-    console.log(getMyPark);
-    console.log(this);
-    $.get('api/parks/'+ getMyPark, function(park) {
-      console.log(park);
-      var parkToSend = JSON.stringify(park);
-      console.log('the park you are sending as data is: ' + parkToSend);
+// event listener to add selected park to My Parks
+$('.add-park').on('click', function(event) {
+  console.log('button clicked');
+  var getMyPark = $(this).data("parkcode");
+  console.log(getMyPark);
+  console.log(this);
+  $.get('api/parks/'+ getMyPark, function(park) {
+    console.log(park);
+    var parkToSend = JSON.stringify(park);
+    console.log('the park you are sending as data is: ' + parkToSend);
       // console.log('about to run PUT route');
     // $.put('api/parks/dev', )
     var parkCodeToSend = park.parkCode;
-      $.ajax({
-        url: '/api/parks/' + parkCodeToSend,
-        type: 'PUT',
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        data: parkToSend,
-        success: [ function(data) {
-          console.log('success');
-        }]
-      });
+    $.ajax({
+      url: '/api/parks/' + parkCodeToSend,
+      type: 'PUT',
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: parkToSend,
+      success: [ function(data) {
+        console.log('success');
+      }]
     });
   });
+});
 }
 
 

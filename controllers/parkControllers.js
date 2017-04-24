@@ -1,3 +1,5 @@
+// PARKS CONTROLLERS
+
 var db = require('../models');
 var User = require('../models/user')
 
@@ -9,7 +11,9 @@ var api_key = process.env.NPS_KEY;
 var version = "v0";
 
 // USER ROUTES
+// ======================================================================
 
+// GET all users
 function getAllUsers(req, res) {
   console.log('getting all users');
   db.User.find({}, function(err, users) {
@@ -59,7 +63,8 @@ function deleteUser(req, res) {
   });
 };
 
-// PARK Routes
+// PARK ROUTES
+// ======================================================================
 
 // GET homepage
 function getParkIndex(req, res) {
@@ -74,7 +79,7 @@ function getParks(req, res) {
   });
 };
 
-//SHOW
+//GET PARKS BY STATE
 function getParksByState (req, res) {
   console.log("Get parks by state");
   db.Park.find({ states: req.params.state}, function(err, parks) {
@@ -82,7 +87,7 @@ function getParksByState (req, res) {
   });
 };
 
-//SHOW
+//SHOW PARK BY PARK CODE
 function getByParkCode (req, res) {
   console.log(req);
   console.log("Get one park by parkCode");
@@ -92,7 +97,7 @@ function getByParkCode (req, res) {
   });
 };
 
-// PUT 
+// PUT  wat?
 function updateUserByParkCode(req, res) {
   var parkToStore = req.body;
    db.User.find({_id: req.user._id}, function(err, res) {
@@ -135,7 +140,7 @@ function editByParkCode (req, res) {
 //DELETE
 
 
-// GET
+// GETs all parks and adds to API page
 function populateApi(req, res) {
   db.Park.find({}, function(err, parks) {
     res.json(parks);
@@ -145,19 +150,24 @@ function populateApi(req, res) {
 
 // Show alerts for one park
 function getAlerts(req, res) {
+
+  // Command line variable to make external request for alerts
   var cmdAlerts = 'curl -X GET \
     https://developer.nps.gov/api/' + version + '/alerts?parkCode='+ req.params.parkCode +'\
     -H "authorization: "' + api_key +'\
     -H "cache-control: no-cache"';
 
+    // Executes command line action
     exec(cmdAlerts, function(err, stdout, stderr) {
         console.log("The err received is: ", err);
-        console.log(stdout);
-        console.log(stderr);
+        console.log(stdout); // (standard out)
+        console.log(stderr); // (standard err)
         res.send(stdout);
       });
 }
 
+
+// Modules to export
 module.exports = {
   getAllUsers: getAllUsers,
   getUser: getUser,
